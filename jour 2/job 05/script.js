@@ -1,19 +1,8 @@
 
-const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / scrollHeight) * 100;
 
-const maxScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-let percentScrolled = 0;
-
-
-if (maxScroll > 0) {
-    percentScrolled = (scrollPosition / maxScroll) * 100;
-}
-
-
-if (percentScrolled >= 100) {
-    document.getElementById('footer').style.backgroundColor = "red";
-} else {
-
-    document.getElementById('footer').style.backgroundColor = "";
-}
+    document.documentElement.style.setProperty("--scroll", scrollPercent * 3.6);
+});
